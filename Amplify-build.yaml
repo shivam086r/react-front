@@ -1,0 +1,17 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - export NODE_OPTIONS=--openssl-legacy-provider  # Enable OpenSSL legacy provider
+        - yarn install  # Install dependencies
+    build:
+      commands:
+        - yarn run build  # Build the React app
+  artifacts:
+    baseDirectory: build
+    files:
+      - "**/*"  # Include all files in the build directory
+  cache:
+    paths:
+      - node_modules/**/*  # Cache node_modules to speed up future builds
